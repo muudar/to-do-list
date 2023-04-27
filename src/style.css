@@ -216,3 +216,36 @@ table {
 .project-list-titles{
     width:100%;
 }
+
+.edit-project-form{
+    justify-content:center;
+    align-items:center;
+}
+
+.project-title input{
+    height:50px;
+    width: 500px;
+    font-size: 42px;
+}
+
+.edit-project-form button{
+    color:white;
+    font-size: 22px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-left: 10px;
+    border-radius: 6px;
+    height:50px;
+    width: 100px;
+}
+
+.edit-project-form button:nth-child(2){
+    background-color:rgb(1, 124, 1);
+}
+
+.edit-project-form button:nth-child(3){
+    background-color:rgb(191, 17, 17);
+}
+

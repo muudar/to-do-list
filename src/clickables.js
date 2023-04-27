@@ -69,7 +69,7 @@ function toggleAddProjectClickableEvent(){
         for(let i = 0; i < projects.length; i++){
             let project = projects[i];
             if(project.name == name || !name){
-                alert("No!");
+                alert("Name is empty or already taken!");
                 return;
             }
         }
@@ -80,4 +80,17 @@ function toggleAddProjectClickableEvent(){
     }
 }
 
-export {makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject};
+
+function makeProjectTitleEditable(){
+    let titleBar = document.querySelector('.project-title');
+    let projectTitleForm = document.querySelector(".edit-project-form");
+    titleBar.onclick = function(){
+        let id = titleBar.dataset.id;
+        let oldText = getProjects()[id].name;
+        titleBar.classList.add("hidden");
+        projectTitleForm.value = oldText;
+        projectTitleForm.style.display = "flex";
+    }
+}
+
+export {makeProjectTitleEditable,makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject};

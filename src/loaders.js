@@ -1,4 +1,4 @@
-import { makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject } from "./clickables";
+import {makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject } from "./clickables";
 import "./style.css"
 import { getProjects, setProjects } from "./project";
 
@@ -25,12 +25,18 @@ function loadProjects(projects, index){
     addListenersForActiveProject();
     giveDeleteProjectBtnsFunctionality();
     toggleAddProjectClickableEvent();
+    makeProjectTitleEditable();
     
 }
 
 function loadProject(index){
     let projects = getProjects();
     let titleBar = document.querySelector('.project-title');
+    titleBar.classList.remove("hidden");
+    let projectTitleForm = document.querySelector(".edit-project-form");
+    projectTitleForm.style.display = "none";
+    projectTitleForm.classList.add("hidden");
+    titleBar.dataset.id = index;
     titleBar.textContent = projects[index].name;
     loadTasks(index);
 }
