@@ -6,4 +6,11 @@ function Project(name){
     }
 }
 
-export {Project};
+function getProjects(){
+    return JSON.parse(localStorage.getItem('projects'));
+}
+
+function setProjects(projects){
+    localStorage.setItem('projects', JSON.stringify(projects));
+}
+export {Project, getProjects, setProjects};

@@ -174,3 +174,45 @@ table {
     margin-left: 20px;
 }
 
+.hidden{
+    display:none;
+}
+
+
+.project-name-input{
+    width: 100%;
+    margin-top: 14px;
+    height: 22px;
+    font-size: 20px;
+}
+
+.add-project-btns{
+    display:flex;
+    margin-top: 20px;
+    justify-content:space-evenly;
+}
+
+.add-project-btns button{
+    color:white;
+    font-size: 22px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 40%;
+    height: 32px;
+    border-radius: 8px;
+    cursor:pointer;
+}
+
+.add-project-btns button:nth-child(1){
+    background-color:rgb(1, 124, 1);
+}
+
+.add-project-btns button:nth-child(2){
+    background-color:rgb(191, 17, 17);
+}
+
+.project-list-titles{
+    width:100%;
+}
