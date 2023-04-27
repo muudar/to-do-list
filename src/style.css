@@ -75,7 +75,7 @@ table {
     margin-bottom: 20px;
 }
 
-.menu-title div, .menu-title span, .in-menu-title, .add-task, .first, .task-name, .project-title, .delete{
+.menu-title div, .menu-title span, .in-menu-title, .add-task, .first, .task-name, .project-title, .deletel{
     cursor:pointer;
 }
 
