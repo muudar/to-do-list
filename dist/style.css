@@ -49,12 +49,12 @@ table {
 
 :root {
     --slight-grey: color: rgb(56, 56, 56);
+    font-family:Lato;
 }
 
 #content{
     display:flex;
     padding: 10px 10px 10px 10px;
-    font-family:Lato;
 }
 
 .left-bar{
@@ -75,7 +75,7 @@ table {
     margin-bottom: 20px;
 }
 
-.menu-title div, .menu-title span, .in-menu-title{
+.menu-title div, .menu-title span, .in-menu-title, .add-task, .first, .task-name, .project-title, .delete{
     cursor:pointer;
 }
 
@@ -122,3 +122,55 @@ table {
     justify-content: space-between;
     padding: 5px 10px 5px 5px;
 }
+
+.right-bar{
+    padding:50px 50px 50px 50px;
+}
+
+.project-title{
+    font-size: 42px;
+    font-weight:bold;
+}
+
+.project-tasks{
+    margin-top: 50px;
+    margin-left:30px;
+    font-size: 24px;
+}
+
+.add-task, .task{
+    padding-left: 20px;
+    display:flex;
+    align-items:center;
+    width: 600px;
+    height: 70px;
+}
+
+.task{
+    border-bottom: 1px solid rgb(172, 171, 171);
+}
+
+.add-task{
+    color:grey;
+    border: 1px solid rgb(172, 171, 171);
+    border-radius:10px;
+}
+
+.first{
+    margin-right: 25px;
+    height: 20px;
+    width: 20px;
+}
+
+.due-date{
+    position:relative;
+    color:rgb(172, 171, 171);
+    margin-left:auto;
+    font-size: 20px;
+}
+
+.delete{
+    opacity:50%;
+    margin-left: 20px;
+}
+
