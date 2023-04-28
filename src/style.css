@@ -294,7 +294,7 @@ table {
     align-items: center;
   }
 
-  .modal-form input {
+  .modal-form > input {
     font-size: 22px;
 	background: white;
 	border: 0 none;
@@ -315,12 +315,7 @@ table {
     margin-bottom: 50px;
 }
 
-.add-task-btns{
-    display:flex;
-    justify-content:space-evenly;
-}
-
-.add-task-btns button{
+.add-task-btns input{
     color:white;
     font-size: 22px;
     font-weight:bold;
@@ -333,10 +328,6 @@ table {
     cursor:pointer;
 }
 
-.add-task-btns button:nth-child(1){
+.add-task-btns input{
     background-color:rgb(1, 124, 1);
-}
-
-.add-task-btns button:nth-child(2){
-    background-color:rgb(191, 17, 17);
 }

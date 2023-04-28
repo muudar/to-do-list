@@ -1,5 +1,5 @@
 import "./style.css"
-import { getProjects, setProjects , Project } from "./project";
+import { getProjects, setProjects , Project, checkProjectName } from "./project";
 import { loadProjects, loadTasks, loadProject } from "./loaders";
 
 
@@ -66,12 +66,9 @@ function toggleAddProjectClickableEvent(){
     acceptBtn.onclick = function(){
         let projects = getProjects();
         let name = addProjectForm.children[0].value;
-        for(let i = 0; i < projects.length; i++){
-            let project = projects[i];
-            if(project.name == name || !name){
-                alert("Name is empty or already taken!");
-                return;
-            }
+        if(checkProjectName(name).status == false){
+            alert(checkProjectName(name).errorMsg);
+            return;
         }
         addProjectForm.children[0].value = "";
         projects.push(new Project(name));
@@ -98,24 +95,14 @@ function makeProjectTitleEditable(){
         editBtn.onclick = () => {
             let flag = 1;
             let val = projectTitleForm.children[0].value;
-            if(!val){
-                alert("Empty value!");
-                flag = 0;
+            if(checkProjectName(val).status == false){
+                alert(checkProjectName(val).errorMsg);
+                return;
             }
-            else{
-                for(let project of getProjects()){
-                    if(val == project.name){
-                        alert("Project of this name already exists!");
-                        flag = 0;
-                    }
-                }
-            }
-            if(flag == 1){
-                let projects = getProjects();
-                projects[id].name = val;
-                setProjects(projects);
-                loadProjects(projects, id);
-            }
+            let projects = getProjects();
+            projects[id].name = val;
+            setProjects(projects);
+            loadProjects(projects, id);
         }
     }
 }

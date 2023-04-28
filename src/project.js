@@ -13,4 +13,33 @@ function getProjects(){
 function setProjects(projects){
     localStorage.setItem('projects', JSON.stringify(projects));
 }
-export {Project, getProjects, setProjects};
+
+function checkProjectName(name){
+    if(!name){
+        return{
+            status: false,
+            errorMsg: "Blank value"
+        }
+    }
+    let projects = getProjects();
+    for(let project of projects){
+        if(project.name.toLowerCase() == name.toLowerCase()){
+            return{
+                status : false,
+                errorMsg: "A project with this name already exists!"
+            };
+        }
+    }
+    if(name.length < 3 || name.length > 30){
+        return{
+            status: false,
+            errorMsg: "Length must be between 3 and 30"
+        };
+    }
+    return{
+        status: true
+    };
+}
+
+
+export {Project, getProjects, setProjects, checkProjectName};

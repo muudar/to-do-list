@@ -84,19 +84,20 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                       <span class="close">&times;</span>
-                      <div class = "modal-form">
+                        <form action="javascript:void(0);" class = "modal-form">
                         <div class = "add-task-headline">
                             Add a Task
                         </div>
-                        <input type="text" id = "addTaskTitle" placeholder = "Task Title">
-                        <input type="date" id = "addTaskDueDate" placeholder = "Due Date">
+                        <input type="text" id = "addTaskTitle" placeholder = "Task Title" required>
+                        <input type="date" id = "addTaskDueDate" placeholder = "Due Date" min="2023-04-29" max="2024-04-29">
                         <input type="text" id = "addTaskDescription" placeholder = "Description">
                         <div class = "add-task-btns">
-                            <button>
+                            <input type="submit" value="Add Task">
+                            <!-- <button>
                                 Add Task
-                            </button>
+                            </button> -->
                         </div>
-                      </div>
+                    </form>
                     </div>
                   
                   </div>
