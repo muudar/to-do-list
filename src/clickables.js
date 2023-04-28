@@ -86,10 +86,38 @@ function makeProjectTitleEditable(){
     let projectTitleForm = document.querySelector(".edit-project-form");
     titleBar.onclick = function(){
         let id = titleBar.dataset.id;
+        console.log(id);
         let oldText = getProjects()[id].name;
         titleBar.classList.add("hidden");
-        projectTitleForm.value = oldText;
+        projectTitleForm.children[0].value = oldText;
         projectTitleForm.style.display = "flex";
+        let cancelBtn = projectTitleForm.children[2];
+        let editBtn = projectTitleForm.children[1];
+        cancelBtn.onclick = () =>{
+            makeActiveProject(id);
+        }
+        editBtn.onclick = () => {
+            let flag = 1;
+            let val = projectTitleForm.children[0].value;
+            if(!val){
+                alert("Empty value!");
+                flag = 0;
+            }
+            else{
+                for(let project of getProjects()){
+                    if(val == project.name){
+                        alert("Project of this name already exists!");
+                        flag = 0;
+                    }
+                }
+            }
+            if(flag == 1){
+                let projects = getProjects();
+                projects[id].name = val;
+                setProjects(projects);
+                loadProjects(projects, id);
+            }
+        }
     }
 }
 
