@@ -86,7 +86,6 @@ function makeProjectTitleEditable(){
     let projectTitleForm = document.querySelector(".edit-project-form");
     titleBar.onclick = function(){
         let id = titleBar.dataset.id;
-        console.log(id);
         let oldText = getProjects()[id].name;
         titleBar.classList.add("hidden");
         projectTitleForm.children[0].value = oldText;
