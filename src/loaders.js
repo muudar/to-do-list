@@ -42,6 +42,20 @@ function loadProject(index){
 }
 
 function loadTasks(index){
+    let addTaskBtn = document.querySelector(".add-task");
+    var span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("myModal");
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+    addTaskBtn.onclick = function(){
+        modal.style.display = "block";
+    }
     let thisProject = getProjects()[index];
     let toDos = thisProject.todos;;
     let unorderedList = document.querySelector('.task-list');
