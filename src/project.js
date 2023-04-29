@@ -33,13 +33,16 @@ function checkProjectName(name){
     if(name.length < 3 || name.length > 30){
         return{
             status: false,
-            errorMsg: "Length must be between 3 and 30"
+            errorMsg: "Project title length must be between 3 and 30",
         };
     }
     return{
         status: true
     };
 }
+
+
+
 
 
 export {Project, getProjects, setProjects, checkProjectName};

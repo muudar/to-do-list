@@ -1,6 +1,7 @@
 import {makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject } from "./clickables";
 import "./style.css"
 import { getProjects, setProjects } from "./project";
+import {addTask, checkTaskValues, getAddTaskValues} from "./todo";
 
 function loadProjects(projects, index){
     let unorderedList = document.querySelector(".projects");
@@ -26,7 +27,6 @@ function loadProjects(projects, index){
     giveDeleteProjectBtnsFunctionality();
     toggleAddProjectClickableEvent();
     makeProjectTitleEditable();
-    
 }
 
 function loadProject(index){
@@ -55,6 +55,19 @@ function loadTasks(index){
       }
     addTaskBtn.onclick = function(){
         modal.style.display = "block";
+        document.querySelector("#addTaskTitle").value = "";
+        document.querySelector("#addTaskDueDate").value = "";
+        document.querySelector("#addTaskDescription").value = "";
+    }
+    document.querySelector("#addTaskButton").onclick = () =>{
+        if(checkTaskValues().status == false){
+            alert(checkTaskValues().errorMsg);
+        }
+        else{
+            addTask(index);
+            modal.style.display = "none";
+            loadProject(index);
+        }
     }
     let thisProject = getProjects()[index];
     let toDos = thisProject.todos;;

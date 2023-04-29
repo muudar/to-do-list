@@ -5,6 +5,7 @@ import { loadProjects, loadTasks, loadProject } from "./loaders";
 
 let currActive = 0;
 
+
 function removeActiveProjectIndicator(){
     let unorderedList = document.querySelector(".projects-list").children[0];
     for(let i = 0; i < unorderedList.children.length; i++){
