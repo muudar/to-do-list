@@ -84,6 +84,13 @@ function deleteTask(projectID, taskID){
     setProjects(projects);
 }
 
+function triggerTask(projectID, taskID, checkbox){
+    let projects = getProjects();
+    let curr = projects[projectID].todos[taskID];
+    curr.done = !curr.done;
+    checkbox.checked = !checkbox.checked;
+    setProjects(projects);
+}
 
 function makeProjectTitleEditable(){
     let titleBar = document.querySelector('.project-title');
@@ -114,4 +121,4 @@ function makeProjectTitleEditable(){
     }
 }
 
-export {deleteTask, makeProjectTitleEditable,makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject};
+export {triggerTask ,deleteTask, makeProjectTitleEditable,makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject};

@@ -1,4 +1,4 @@
-import {deleteTask ,makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject } from "./clickables";
+import {deleteTask ,makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject, triggerTask } from "./clickables";
 import "./style.css"
 import { getProjects, setProjects } from "./project";
 import {addTask, checkTaskValues, getAddTaskValues} from "./todo";
@@ -84,6 +84,10 @@ function loadTasks(index){
         let taskName = document.createElement("div");
         taskName.classList.add("task-name");
         taskName.textContent = curr.name;
+        if(curr.done){
+            taskName.classList.add("done");
+            checkbox.checked = true;
+        }
         let dueDate = document.createElement("div");
         dueDate.classList.add("due-date");
         dueDate.textContent = curr.dueDate;
@@ -92,6 +96,10 @@ function loadTasks(index){
         span.dataset.id = i;
         span.onclick = function(){
             deleteTask(index, span.dataset.id);
+            loadProject(index);
+        }
+        checkbox.onclick = function(){
+            triggerTask(index, span.dataset.id, checkbox);
             loadProject(index);
         }
         span.textContent = "delete";

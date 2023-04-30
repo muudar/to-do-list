@@ -331,3 +331,8 @@ table {
 .add-task-btns input{
     background-color:rgb(1, 124, 1);
 }
+
+.done{
+    text-decoration:line-through;
+    opacity:0.3;
+}
