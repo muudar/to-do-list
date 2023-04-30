@@ -1,4 +1,4 @@
-import {makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject } from "./clickables";
+import {deleteTask ,makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject } from "./clickables";
 import "./style.css"
 import { getProjects, setProjects } from "./project";
 import {addTask, checkTaskValues, getAddTaskValues} from "./todo";
@@ -89,6 +89,11 @@ function loadTasks(index){
         dueDate.textContent = curr.dueDate;
         let span = document.createElement("span");
         span.classList.add("material-symbols-outlined" , "delete");
+        span.dataset.id = i;
+        span.onclick = function(){
+            deleteTask(index, span.dataset.id);
+            loadProject(index);
+        }
         span.textContent = "delete";
         listItem.append(checkbox, taskName, dueDate, span);
         unorderedList.append(listItem);

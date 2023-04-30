@@ -78,6 +78,12 @@ function toggleAddProjectClickableEvent(){
     }
 }
 
+function deleteTask(projectID, taskID){
+    let projects = getProjects();
+    projects[projectID].todos.splice(taskID, 1);
+    setProjects(projects);
+}
+
 
 function makeProjectTitleEditable(){
     let titleBar = document.querySelector('.project-title');
@@ -108,4 +114,4 @@ function makeProjectTitleEditable(){
     }
 }
 
-export {makeProjectTitleEditable,makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject};
+export {deleteTask, makeProjectTitleEditable,makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject};
