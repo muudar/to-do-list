@@ -84,10 +84,6 @@ function loadTasks(index){
         let taskName = document.createElement("div");
         taskName.classList.add("task-name");
         taskName.textContent = curr.name;
-        if(curr.done){
-            taskName.classList.add("done");
-            checkbox.checked = true;
-        }
         let dueDate = document.createElement("div");
         dueDate.classList.add("due-date");
         dueDate.textContent = curr.dueDate;
@@ -110,6 +106,11 @@ function loadTasks(index){
         descriptionDiv.textContent = curr.description;
         descriptionDiv.style.display = "none";
         breakDiv.style.display = "none";
+        if(curr.done){
+            taskName.classList.add("done");
+            descriptionDiv.classList.add("done");
+            checkbox.checked = true;
+        }
         listItem.onmouseover = function(){
             descriptionDiv.style["margin-left"] = "50px";
             descriptionDiv.style.display = "block";
