@@ -7,6 +7,11 @@ function Project(name){
 }
 
 function getProjects(){
+    if(!localStorage.getItem('projects')){
+        let projects = [];
+        projects.push(new Project("My Project"));
+        localStorage.setItem('projects', JSON.stringify(projects));
+    }
     return JSON.parse(localStorage.getItem('projects'));
 }
 
