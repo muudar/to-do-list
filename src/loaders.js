@@ -1,7 +1,7 @@
 import {deleteTask ,makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject, triggerTask } from "./clickables";
 import "./style.css"
-import { getProjects, setProjects } from "./project";
-import {addTask, checkTaskValues, getAddTaskValues} from "./todo";
+import { getProjects, } from "./project";
+import {addTask, checkTaskValues, editTask} from "./todo";
 
 function loadProjects(projects, index){
     let unorderedList = document.querySelector(".projects");
@@ -54,19 +54,21 @@ function loadTasks(index){
         modal.style.display = "none";
       }
     addTaskBtn.onclick = function(){
+        document.querySelector(".add-task-headline").textContent = "Add a Task";
+        document.querySelector("#addTaskButton").value = "Add Task";
         modal.style.display = "block";
         document.querySelector("#addTaskTitle").value = "";
         document.querySelector("#addTaskDueDate").value = "";
         document.querySelector("#addTaskDescription").value = "";
-    }
-    document.querySelector("#addTaskButton").onclick = () =>{
-        if(checkTaskValues().status == false){
-            alert(checkTaskValues().errorMsg);
-        }
-        else{
-            addTask(index);
-            modal.style.display = "none";
-            loadProject(index);
+        document.querySelector("#addTaskButton").onclick = () =>{
+            if(checkTaskValues().status == false){
+                alert(checkTaskValues().errorMsg);
+            }
+            else{
+                addTask(index);
+                modal.style.display = "none";
+                loadProject(index);
+            }
         }
     }
     let thisProject = getProjects()[index];
@@ -124,6 +126,25 @@ function loadTasks(index){
         }
         listItem.append(checkbox, taskName, dueDate, span, breakDiv, descriptionDiv);
         unorderedList.append(listItem);
+        taskName.onclick = function(){
+            document.querySelector(".add-task-headline").textContent = "Edit a Task";
+            document.querySelector("#addTaskButton").value = "Edit Task";
+            modal.style.display = "block";
+            addTaskBtn.value = "Edit Task"
+            document.querySelector("#addTaskTitle").value = curr.name;
+            document.querySelector("#addTaskDueDate").value = curr.dueDate;
+            document.querySelector("#addTaskDescription").value = curr.description;
+            document.querySelector("#addTaskButton").onclick = () =>{
+                if(checkTaskValues().status == false){
+                    alert(checkTaskValues().errorMsg);
+                }
+                else{
+                    editTask(index, i);
+                    modal.style.display = "none";
+                    loadProject(index);
+                }
+            }
+        }
     }
 }
 

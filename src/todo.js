@@ -52,5 +52,14 @@ function checkTaskValues(){
     };
 }
 
+function editTask(projectID, taskID){
+    let values = getAddTaskValues();
+    let projects = getProjects();
+    let task = projects[projectID].todos[taskID];
+    task.name = values.title;
+    task.dueDate = values.dueDate;
+    task.description = values.description;
+    setProjects(projects);
+;}
 
-export {ToDo, getAddTaskValues, addTask, checkTaskValues};
+export {ToDo, getAddTaskValues, addTask, checkTaskValues, editTask};
