@@ -103,7 +103,25 @@ function loadTasks(index){
             loadProject(index);
         }
         span.textContent = "delete";
-        listItem.append(checkbox, taskName, dueDate, span);
+        let breakDiv = document.createElement("div");
+        breakDiv.classList.add("break", "hover-task");
+        let descriptionDiv = document.createElement("div");
+        descriptionDiv.classList.add("description-div", "hover-task");
+        descriptionDiv.textContent = curr.description;
+        descriptionDiv.style.display = "none";
+        breakDiv.style.display = "none";
+        listItem.onmouseover = function(){
+            descriptionDiv.style["margin-left"] = "50px";
+            descriptionDiv.style.display = "block";
+            breakDiv.style.display = "block";
+        }
+        listItem.onmouseleave = function(){
+            listItem.style.transition = "1s";
+            descriptionDiv.style["margin-left"] = "0px";
+            descriptionDiv.style.display = "none";
+            breakDiv.style.display = "none";
+        }
+        listItem.append(checkbox, taskName, dueDate, span, breakDiv, descriptionDiv);
         unorderedList.append(listItem);
     }
 }
