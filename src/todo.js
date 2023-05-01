@@ -1,5 +1,6 @@
 import { setProjects, getProjects } from "./project";
-import moment from 'moment';
+
+const moment = require('moment');
 
 function ToDo(name, dueDate, description){
     this.name = name;
@@ -18,6 +19,9 @@ function getAddTaskValues(){
 function addTask(projectID){
     let projects = getProjects();
     projects[projectID].todos.push(new ToDo(getAddTaskValues().title, getAddTaskValues().dueDate, getAddTaskValues().description));
+    for(let project of projects){
+        project.todos.sort(compare);
+    }
     setProjects(projects);
 }
 
@@ -59,7 +63,23 @@ function editTask(projectID, taskID){
     task.name = values.title;
     task.dueDate = values.dueDate;
     task.description = values.description;
+    for(let project of projects){
+        project.todos.sort(compare);
+    }
     setProjects(projects);
-;}
+}
 
-export {ToDo, getAddTaskValues, addTask, checkTaskValues, editTask};
+function compare(a,b){
+    if(a.done && !b.done){
+        return 1;
+    }
+    if(b.done && !a.done){
+        return -1;
+    }
+    if(moment(a.dueDate).isAfter(moment(b.dueDate))){
+        return 1;
+    }    
+    return -1;
+}
+
+export {ToDo, getAddTaskValues, addTask, checkTaskValues, editTask, compare};

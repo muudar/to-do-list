@@ -1,7 +1,10 @@
 import {deleteTask ,makeProjectTitleEditable, makeActiveProject, toggleAddProjectClickableEvent, giveDeleteProjectBtnsFunctionality, addListenersForActiveProject, triggerTask } from "./clickables";
 import "./style.css"
-import { getProjects, } from "./project";
-import {addTask, checkTaskValues, editTask} from "./todo";
+import { getProjects, setProjects, } from "./project";
+import {addTask, checkTaskValues, editTask, compare} from "./todo";
+
+const moment = require('moment');
+const today = moment().format('YYYY-MM-DD')
 
 function loadProjects(projects, index){
     let unorderedList = document.querySelector(".projects");
@@ -41,6 +44,8 @@ function loadProject(index){
     loadTasks(index);
 }
 
+
+
 function loadTasks(index){
     let addTaskBtn = document.querySelector(".add-task");
     var span = document.getElementsByClassName("close")[0];
@@ -71,13 +76,19 @@ function loadTasks(index){
             }
         }
     }
-    let thisProject = getProjects()[index];
+    let projects = getProjects();
+    let thisProject = projects[index];
+    thisProject.todos.sort(compare);
+    setProjects(projects);
     let toDos = thisProject.todos;;
     let unorderedList = document.querySelector('.task-list');
     unorderedList.innerHTML = "";
     for(let i = 0; i < toDos.length; i++){
         let curr = toDos[i];
         let listItem = document.createElement("li");
+        if(moment(curr.dueDate).isBefore(today)){
+            listItem.style.color = "red";
+        }
         listItem.dataset.id = i;
         listItem.classList.add("task");
         let checkbox = document.createElement("input");
@@ -148,4 +159,4 @@ function loadTasks(index){
     }
 }
 
-export {loadProjects, loadTasks, loadProject};
+export {loadProjects, loadTasks, loadProject };
